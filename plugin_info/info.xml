@@ -2,7 +2,7 @@
 <info>
     <id>dbm6000</id>
     <name>DBM6000</name>
-    <description>Ouvrez vos barrières gérer par un module DBM6000 via jeedom</description>
+    <description>Ouvrez vos barrières géréées par un module DBM6000 via jeedom</description>
     <icon>fa fa-keyboard-o</icon>
     <licence>AGPL</licence>
     <author>Miguel Vanhove</author>
