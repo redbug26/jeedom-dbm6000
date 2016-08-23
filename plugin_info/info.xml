@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>dbm6000</id>
+    <name>DBM6000</name>
+    <description>Ouvrez vos barrières gérer par un module DBM6000 via jeedom</description>
+    <icon>fa fa-keyboard-o</icon>
+    <licence>AGPL</licence>
+    <author>Miguel Vanhove</author>
+    <installation>Pour que la connection mssql fonctionne : sudo apt-get install php5-sybase</installation>
+    <require>1.0</require>
+    <category>automation protocol</category>
+</info>
+
