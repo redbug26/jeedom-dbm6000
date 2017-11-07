@@ -1,0 +1,9 @@
+{
+	"id" : "dbm6000",
+	"name" : "DBM6000",
+	"licence" : "AGPL",
+	"author" : "Miguel Vanhove",
+	"require" : "3.0",
+	"installation" : "Pour que la connection mssql fonctionne : sudo apt-get install php-sybase",
+	"category" : "automation protocol"
+}
