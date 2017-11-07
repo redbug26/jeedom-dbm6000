@@ -81,13 +81,14 @@ class dbm6000 extends eqLogic {
 
 	public static function syncEqLogicWithRazberry($_serverId = 1) {
 
-		$server = config::byKey('mssqlServer', 'dbm6000');
-		$db_connect = mssql_connect($server, config::byKey('mssqlUsername', 'dbm6000'), config::byKey('mssqlPassword', 'dbm6000'));
-		$link = mssql_select_db("DBM6000", $db_connect);
 
-		if (!$link) {
+		$server = config::byKey('mssqlServer', 'dbm6000');
+		$connectionInfo = array( "Database"=>"DBM6000", "UID"=>config::byKey('mssqlUsername', 'dbm6000'), "PWD"=>config::byKey('mssqlPassword', 'dbm6000'));
+		$db_connect = sqlsrv_connect($server, $connectionInfo);
+
+		if (!$db_connect) {
 			$result["status"] = "error";
-			$result["message"] = "Couldn't connect to the database";
+			$result["message"] = "Couldn't connect to the database (" . config::byKey('mssqlUsername', 'dbm6000') . ":" . config::byKey('mssqlPassword', 'dbm6000') . ") on " . $server . "\nError: " . print_r(sqlsrv_errors(), true); 
 
 			echo json_encode($result);
 			exit;
@@ -96,8 +97,8 @@ class dbm6000 extends eqLogic {
 		$eqLogics = eqLogic::byType('dbm6000');
 
 		$query = "select DoorSN, Name from doors";
-		$db = mssql_query($query, $db_connect);
-		while (is_array($row = mssql_fetch_assoc($db))) {
+		$db = sqlsrv_query($query, $db_connect);
+		while (is_array($row = sqlsrv_fetch_array(SQLSRV_FETCH_ASSOC,$db))) {
 			$cmd = $row["DoorSN"];
 
 			$cmds[$cmd] = utf8_encode($row["Name"]);
@@ -174,7 +175,7 @@ class dbm6000Cmd extends cmd {
 
 		error_log("error: " . $doorSN);
 
-		$server = '172.16.130.42'; // Serveur PC
+		$server = config::byKey('pcServer', 'dbm6000');
 		$port = 6002;
 
 		if (!($sock = socket_create(AF_INET, SOCK_DGRAM, 0))) {

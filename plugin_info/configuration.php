@@ -61,7 +61,7 @@ if (!isConnect()) {
     $('#bt_syncWithKnxipbaos').on('click',function(){
  $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
-            url: "plugins/knxipbaos/core/ajax/knxipbaos.ajax.php", // url du fichier php
+            url: "plugins/dbm6000/core/ajax/knxipbaos.ajax.php", // url du fichier php
             data: {
                 action: "synchronisation",
             },
